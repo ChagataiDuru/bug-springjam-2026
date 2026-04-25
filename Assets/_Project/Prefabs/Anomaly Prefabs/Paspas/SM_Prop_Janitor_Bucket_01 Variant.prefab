@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5203987310297859403
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1806054873381056, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_Name
+      value: SM_Prop_Janitor_Bucket_01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337023700368066, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337023700368066, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.833
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337023700368066, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337023700368066, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337023700368066, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337023700368066, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337023700368066, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337023700368066, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d76006011098e984c96ff24b0dfac68f, type: 3}
