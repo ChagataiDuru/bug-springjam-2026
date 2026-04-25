@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/cagatayduru/Documents/GitHub/SuckTheWater -maxdepth 2 -type f \\\\\\(-name README* -o -name CLAUDE* -o -name .cursorrules -o -name *.md \\\\\\))",
+      "Bash(find /Users/cagatayduru/Documents/GitHub/SuckTheWater/Packages -name *wobble* -o -name *water*)",
+      "Bash(git:*)"
+    ]
+  }
+}

@@ -962,7 +962,25 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: DOTWEEN;DOTWEEN_UITOOLKIT
+    EmbeddedLinux: DOTWEEN;DOTWEEN_UITOOLKIT
+    GameCoreScarlett: DOTWEEN;DOTWEEN_UITOOLKIT
+    GameCoreXboxOne: DOTWEEN;DOTWEEN_UITOOLKIT
+    Kepler: DOTWEEN;DOTWEEN_UITOOLKIT
+    LinuxHeadlessSimulation: DOTWEEN;DOTWEEN_UITOOLKIT
+    Nintendo Switch: DOTWEEN;DOTWEEN_UITOOLKIT
+    Nintendo Switch 2: DOTWEEN;DOTWEEN_UITOOLKIT
+    PS4: DOTWEEN;DOTWEEN_UITOOLKIT
+    PS5: DOTWEEN;DOTWEEN_UITOOLKIT
+    QNX: DOTWEEN;DOTWEEN_UITOOLKIT
+    Standalone: DOTWEEN;STEAMWORKS_NET;DOTWEEN_UITOOLKIT;CHROMA_URP;CHROMA_SG
+    VisionOS: DOTWEEN;DOTWEEN_UITOOLKIT
+    WebGL: DOTWEEN;DOTWEEN_UITOOLKIT
+    Windows Store Apps: DOTWEEN;DOTWEEN_UITOOLKIT
+    XboxOne: DOTWEEN;DOTWEEN_UITOOLKIT
+    iPhone: DOTWEEN;DOTWEEN_UITOOLKIT
+    tvOS: DOTWEEN;DOTWEEN_UITOOLKIT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -1064,11 +1082,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 6150dd83-1367-4c55-b6d4-593e912ebe88
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: bug-springjam-2026
+  organizationId: durucagatay01
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

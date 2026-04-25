@@ -1,0 +1,24 @@
+{
+  "name": "com.orangewolf.unity.generic",
+  "version": "0.1.3",
+  "displayName": "Orange Wolf Generic",
+  "description": "Orange Wolf Generic is a package that provides general purposes classes",
+  "unity": "2019.1",
+  "unityRelease": "0f1",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  },
+  "keywords": [
+    "orangewolf",
+    "generic"
+  ],
+  "author": {
+    "name": "Orange Wolf",
+    "email": "yusuf.isik@orangewolfgames.com",
+    "url": "https://www.orangewolfgames.com"
+  },
+  "_fingerprint": "cd7688157b42dd859505ec9e9cfcd1b2563afa41"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "OrangeWolf.DataEntity.Editor",
+    "rootNamespace": "OrangeWolf.DataEntity",
+    "references": [
+        "OrangeWolf.DataEntity",
+        "OrangeWolf.Generic"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

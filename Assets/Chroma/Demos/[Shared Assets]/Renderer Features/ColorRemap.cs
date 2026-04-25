@@ -1,0 +1,14 @@
+﻿using UnityEngine.Rendering.Universal;
+
+namespace Dustyroom {
+public class ColorRemap : GenericRendererFeature {
+    public ColorRemap() {
+        requirements = ScriptableRenderPassInput.Color | ScriptableRenderPassInput.Depth |
+                       ScriptableRenderPassInput.Normal;
+        injectionPoint = InjectionPoint.BeforeRenderingPostProcessing;
+#if UNITY_6000_0_OR_NEWER
+        fetchColorBuffer = true;
+#endif
+    }
+}
+}

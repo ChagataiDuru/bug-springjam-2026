@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperBody
+  m_Mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/Back_L_Attachment
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/Back_M_Attachment
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/Back_S_Attachment
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/neck.x
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/neck.x/head.x
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/arm_twist.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/arm_twist.l/Shoulder_L_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/arm_twist.l/Shoulder_M_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/arm_twist.l/Shoulder_S_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/Elbow_L_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/Elbow_M_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/Elbow_S_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/Forearm_L_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/Forearm_M_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/Forearm_S_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/forearm_twist.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/Hand_Attachment.L
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/index1_base.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/index1_base.l/index1.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/index1_base.l/index1.l/index2.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/index1_base.l/index1.l/index2.l/index3.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/middle1_base.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/middle1_base.l/middle1.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/middle1_base.l/middle1.l/middle2.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/middle1_base.l/middle1.l/middle2.l/middle3.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/thumb1.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/thumb1.l/thumb2.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.l/arm_stretch.l/forearm_stretch.l/hand.l/thumb1.l/thumb2.l/thumb3.l
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/arm_twist.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/arm_twist.r/Shoulder_L_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/arm_twist.r/Shoulder_M_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/arm_twist.r/Shoulder_S_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/Elbow_L_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/Elbow_M_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/Elbow_S_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/Forearm_L_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/Forearm_M_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/Forearm_S_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/forearm_twist.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/Hand_Attachment.R
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/index1_base.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/index1_base.r/index1.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/index1_base.r/index1.r/index2.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/index1_base.r/index1.r/index2.r/index3.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/middle1_base.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/middle1_base.r/middle1.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/middle1_base.r/middle1.r/middle2.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/middle1_base.r/middle1.r/middle2.r/middle3.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/thumb1.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/thumb1.r/thumb2.r
+    m_Weight: 1
+  - m_Path: Char_Mech/c_traj/root.x/spine_01.x/shoulder.r/arm_stretch.r/forearm_stretch.r/hand.r/thumb1.r/thumb2.r/thumb3.r
+    m_Weight: 1

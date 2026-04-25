@@ -1,0 +1,26 @@
+{
+    "name": "SuckTheWater",
+    "rootNamespace": "SuckTheWater",
+    "references": [
+        "GUID:9c5543eabb73a6249ac07b2c065ee8b4",
+        "GUID:27b7e9efd224f064990a97ed99e4456f",
+        "GUID:269903ea973e2a64ca0fb91ee07d3625",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6e20f757a1bae164fa42750dd2b27dcb",
+        "GUID:d196712d54624fd4bb3382415adc4d60",
+        "GUID:68bd7fdb68ef2684e982e8a9825b18a5",
+        "GUID:46920a75c87f34bdf91f5975ee4edf6a",
+        "GUID:eaaae3285da4dcf49a7003a9271bac7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

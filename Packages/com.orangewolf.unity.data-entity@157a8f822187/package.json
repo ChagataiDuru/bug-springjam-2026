@@ -1,0 +1,26 @@
+{
+  "name": "com.orangewolf.unity.data-entity",
+  "version": "1.0.0",
+  "displayName": "Orange Wolf Data Entity",
+  "description": "Orange Wolf Data Entity is a data package to create base game data structures.",
+  "unity": "2019.1",
+  "unityRelease": "0f1",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "dependencies": {
+    "com.orangewolf.unity.generic": "0.1.2",
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  },
+  "keywords": [
+    "orangewolf",
+    "data",
+    "entity"
+  ],
+  "author": {
+    "name": "Orange Wolf",
+    "email": "yusuf.isik@orangewolfgames.com",
+    "url": "https://www.orangewolfgames.com"
+  },
+  "_fingerprint": "157a8f8221877b4f817d2d36ff665f8ff2e844b6"
+}

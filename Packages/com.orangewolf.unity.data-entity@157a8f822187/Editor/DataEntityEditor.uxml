@@ -1,0 +1,35 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.orangewolf.unity.data-entity/Editor/DataEntityEditor.uss?fileID=7433441132597879392&amp;guid=66915e5c569244cb18ee0ae2c9c8d946&amp;type=3#DataEntityEditor" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; width: 100%; height: 100%;">
+        <engine:VisualElement name="ViewerArea" style="flex-grow: 1; flex-direction: row; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.2); flex-shrink: 1;">
+            <engine:ListView name="EntityList" show-foldout-header="false" header-title="Entities" show-add-remove-footer="false" style="max-width: none; min-width: auto; min-height: auto; max-height: none; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; background-color: rgba(0, 0, 0, 0.1); -unity-font-definition: url(&quot;project://database/Packages/com.orangewolf.unity.data-entity/Editor/Fonts/RobotoMono-Regular.ttf?fileID=12800000&amp;guid=eca462c79167a4022b9f8d851dcaf7a8&amp;type=3#RobotoMono-Regular&quot;); width: 30%;" />
+            <engine:VisualElement name="EntityViewer" style="flex-grow: 1; align-items: flex-start; align-self: flex-start; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+                <engine:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row;">
+                    <engine:Label text="Id:" style="-unity-font-style: bold;" />
+                    <engine:Label name="EntityId" />
+                </engine:VisualElement>
+                <engine:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row;">
+                    <engine:Label text="Type:" style="-unity-font-style: bold;" />
+                    <engine:Label name="EntityType" />
+                </engine:VisualElement>
+                <engine:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row;">
+                    <engine:Label text="Name:" style="-unity-font-style: bold;" />
+                    <engine:Label name="EntityName" />
+                </engine:VisualElement>
+                <engine:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row;">
+                    <engine:Label text="Details:" style="-unity-font-style: bold;" />
+                    <engine:Label name="EntityDetails" />
+                </engine:VisualElement>
+                <engine:VisualElement style="flex-grow: 1;">
+                    <engine:Label text="Sprite:" style="-unity-font-style: bold;" />
+                    <engine:VisualElement name="EntitySprite" style="flex-grow: 1;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="GeneratorArea" style="flex-grow: 1; height: 30px; flex-direction: row; width: 100%; justify-content: flex-start; align-self: flex-end; align-items: center; padding-left: 5px; padding-right: 5px;">
+            <engine:Label text="Entity Generator:" style="-unity-font-style: bold;" />
+            <editor:ObjectField allow-scene-objects="false" tooltip="Select your TSV file" name="TsvObjectField" />
+            <engine:Button text="Generate" name="GenerateButton" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

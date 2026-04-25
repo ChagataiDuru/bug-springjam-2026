@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d1bc81b9355fa4546aed94d88fcd9ac4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _uiPanel: {fileID: 4171060165744404505, guid: bddb9bacdc78e4c1bb1ad040e10369f9,
+      type: 3}
+  - _sliderLoading: {instanceID: 0}
+  - _textSlider: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
