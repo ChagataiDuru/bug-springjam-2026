@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e6a1631e01b84b04eae757e1612d0a8b
+timeCreated: 1548115658
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/UI/SM_UI_Level_01.prefab
+  uploadId: 864458

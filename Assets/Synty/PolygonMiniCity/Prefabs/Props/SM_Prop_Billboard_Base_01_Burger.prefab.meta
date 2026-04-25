@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d6a739fce6a092a42a5909019341e18e
+timeCreated: 1548131278
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Props/SM_Prop_Billboard_Base_01_Burger.prefab
+  uploadId: 864458

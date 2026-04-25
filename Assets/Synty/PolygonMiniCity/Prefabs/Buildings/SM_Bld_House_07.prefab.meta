@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a1af2286824e7df45930dba2d39887da
+timeCreated: 1548117271
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Buildings/SM_Bld_House_07.prefab
+  uploadId: 864458

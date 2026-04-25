@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2aeab4e8684b324459cb4277eb97f8ef
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Scenes/Demo_LevelSelect/MiniCity_HexTileEx.asset
+  uploadId: 864458

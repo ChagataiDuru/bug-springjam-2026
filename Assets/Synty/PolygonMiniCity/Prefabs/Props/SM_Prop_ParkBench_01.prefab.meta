@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d6df3f94950db5f4790611eced0cc167
+timeCreated: 1548117269
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Props/SM_Prop_ParkBench_01.prefab
+  uploadId: 864458

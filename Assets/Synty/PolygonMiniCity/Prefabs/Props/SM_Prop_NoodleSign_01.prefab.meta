@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4235bdf715382c64baed7c3cbade749b
+timeCreated: 1548117755
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Props/SM_Prop_NoodleSign_01.prefab
+  uploadId: 864458

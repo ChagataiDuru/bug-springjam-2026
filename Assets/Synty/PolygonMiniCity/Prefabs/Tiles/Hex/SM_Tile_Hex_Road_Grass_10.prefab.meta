@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: efc0e008e4a724146befe8268c889d50
+timeCreated: 1548117270
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Tiles/Hex/SM_Tile_Hex_Road_Grass_10.prefab
+  uploadId: 864458

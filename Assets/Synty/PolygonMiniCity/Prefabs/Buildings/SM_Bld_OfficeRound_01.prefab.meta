@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7967a8711a4e12f4f8eca9321da4f8e5
+timeCreated: 1548117755
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Buildings/SM_Bld_OfficeRound_01.prefab
+  uploadId: 864458

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4e135c0e8b48b8d4eb4c90241e41a510
+timeCreated: 1548117273
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Buildings/SM_Bld_Church_01.prefab
+  uploadId: 864458

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a293224e532f9ed4db0fd358ee614128
+timeCreated: 1548117758
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Props/SM_Prop_Sign_Cola_01.prefab
+  uploadId: 864458

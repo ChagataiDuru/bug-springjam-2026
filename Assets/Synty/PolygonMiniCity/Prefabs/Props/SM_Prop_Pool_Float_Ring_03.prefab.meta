@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e58d6b529f5a0a94bae17532e0d5893d
+timeCreated: 1548117277
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Props/SM_Prop_Pool_Float_Ring_03.prefab
+  uploadId: 864458

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 46eb94982aff66348adb055de087c053
+timeCreated: 1548117265
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Tiles/Hex/SM_Tile_Hex_Road_Concrete_03.prefab
+  uploadId: 864458

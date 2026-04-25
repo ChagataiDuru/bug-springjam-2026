@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8e9eecaab36013848ae88c652c6ad1bf
+timeCreated: 1548117272
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Environment/SM_Env_Hex_SeaWall_02.prefab
+  uploadId: 864458

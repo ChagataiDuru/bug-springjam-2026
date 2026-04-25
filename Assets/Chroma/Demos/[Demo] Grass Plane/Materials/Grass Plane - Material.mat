@@ -446,7 +446,7 @@ Material:
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Clip: 0.487
+    - _Clip: 0.43
     - _Cull: 2
     - _Cutoff: 0.5
     - _Density: 1
@@ -461,7 +461,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Opacity: 1
+    - _Opacity: 0.971
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0

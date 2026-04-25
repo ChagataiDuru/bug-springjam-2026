@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9759b8f8298f8c14e819d83acd201869
+timeCreated: 1548127461
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Vehicles/SM_Veh_Truck_01_Flatbed.prefab
+  uploadId: 864458

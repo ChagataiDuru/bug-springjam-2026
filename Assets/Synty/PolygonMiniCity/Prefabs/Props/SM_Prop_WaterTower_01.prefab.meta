@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fa0582dd6726e86418338c8915c9a2c1
+timeCreated: 1548117274
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138321
+  packageName: POLYGON MINI - City Pack - Art by Synty
+  packageVersion: 1.5.0
+  assetPath: Assets/Synty/PolygonMiniCity/Prefabs/Props/SM_Prop_WaterTower_01.prefab
+  uploadId: 864458
