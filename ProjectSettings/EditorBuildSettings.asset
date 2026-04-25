@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes_Main/1_Supreme.unity
     guid: 003664df6a87744ecbbb2190837a6449
   - enabled: 1
-    path: Assets/_Project/Scenes_Main/2_HubScene.unity
-    guid: fe2a116e2c46d4b85a1e2c1a150730fe
+    path: Assets/_Project/Scenes_Main/2_HubScene_inwork.unity
+    guid: 7075685a6d29040f39dc85590d4e1c8e
   - enabled: 1
     path: Assets/_Project/Scenes_Main/3_GameScene_Building.unity
     guid: cae6df700ebee684a84ffd46204e9c41
