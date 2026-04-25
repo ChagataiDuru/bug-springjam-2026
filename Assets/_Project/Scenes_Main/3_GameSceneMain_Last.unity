@@ -9760,9 +9760,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4324892008981323969, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.71
+      objectReference: {fileID: 0}
     - target: {fileID: 4328224450451669867, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Bank_Door_01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331031266675265183, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16556,7 +16564,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6784444521277473883, guid: 76c2ef9a7a4298a4a8595ff5e094012f, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6830701535815036417, guid: 76c2ef9a7a4298a4a8595ff5e094012f, type: 3}
     - {fileID: 6829921343758826309, guid: 76c2ef9a7a4298a4a8595ff5e094012f, type: 3}
