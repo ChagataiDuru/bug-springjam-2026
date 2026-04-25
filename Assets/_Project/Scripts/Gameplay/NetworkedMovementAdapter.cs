@@ -42,29 +42,29 @@ namespace Taiyun.SuckTheWater.Gameplay
         /// Server Authoritative.
         /// </summary>
         private SyncVar<Vector3> _serverPosition = new SyncVar<Vector3>(default);
-        
+
         /// <summary>
         /// Synced crouching state.
         /// Owner Authoritative (owner writes directly).
         /// </summary>
-        public SyncVar<bool> IsCrouching = new SyncVar<bool>(false);
-        
+        public SyncVar<bool> IsCrouching = new SyncVar<bool>(false, ownerAuth: true);
+
         /// <summary>
         /// Synced grounded state (for animations).
         /// Owner Authoritative.
         /// </summary>
-        public SyncVar<bool> IsGrounded = new SyncVar<bool>(true);
-        
+        public SyncVar<bool> IsGrounded = new SyncVar<bool>(true, ownerAuth: true);
+
         /// <summary>
         /// Synced velocity for prediction/animation.
         /// Owner Authoritative.
         /// </summary>
-        public SyncVar<Vector3> Velocity = new SyncVar<Vector3>(default);
-        
+        public SyncVar<Vector3> Velocity = new SyncVar<Vector3>(default, ownerAuth: true);
+
         #endregion
-        
+
         #region Settings
-        
+
         [Header("Network Settings")]
         [Tooltip("How often to sync state to server (per second)")]
         [SerializeField] private float _syncRate = 20f;

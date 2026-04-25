@@ -7786,52 +7786,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 599465214307944399, guid: 8214c23069502ab4da3d9555497ea658, type: 3}
   m_PrefabInstance: {fileID: 496951064}
   m_PrefabAsset: {fileID: 0}
---- !u!28 &497067951
-Texture2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: VFXG_Falling_Sand_Rocks_A_PositionMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 4
-  m_Width: 9
-  m_Height: 1
-  m_CompleteImageSize: 144
-  m_MipsStripped: 0
-  m_TextureFormat: 20
-  m_MipCount: 1
-  m_IsReadable: 1
-  m_IsPreProcessed: 0
-  m_IgnoreMipmapLimit: 1
-  m_MipmapLimitGroupName: 
-  m_StreamingMipmaps: 0
-  m_StreamingMipmapsPriority: 0
-  m_VTOnly: 0
-  m_AlphaIsTransparency: 0
-  m_ImageCount: 1
-  m_TextureDimension: 2
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 0
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
-  m_LightmapFormat: 0
-  m_ColorSpace: 1
-  m_PlatformBlob: 
-  image data: 144
-  _typelessdata: 5a67224147e166419abda9c20000803f5ea5fa40cdcc54411cab9ec20000803f1fdf334114ae634196d7b1c20000803ff79a2941068161412a27b9c20000803f0d7e4f411e854f41ca22c1c20000803f9ca2794100006041ac89cec20000803f4088a941703d4241e1b4ddc20000803f1a9ab341ae47454142e7edc20000803fe229c441ae474541cc93f9c20000803f
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1001 &504536245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10379,6 +10333,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 599465214307944399, guid: a60580cd3d43b0649bf7e97e3d579db9, type: 3}
   m_PrefabInstance: {fileID: 652551481}
   m_PrefabAsset: {fileID: 0}
+--- !u!28 &665590034
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: VFXG_Falling_Sand_Rocks_B_PositionMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 4
+  m_Width: 6
+  m_Height: 1
+  m_CompleteImageSize: 96
+  m_MipsStripped: 0
+  m_TextureFormat: 20
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_IsPreProcessed: 0
+  m_IgnoreMipmapLimit: 1
+  m_MipmapLimitGroupName: 
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_VTOnly: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 0
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 0
+    m_WrapV: 0
+    m_WrapW: 0
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  m_PlatformBlob: 
+  image data: 96
+  _typelessdata: eea978c1a47035418756d5c20000803ff77acac168668e40a06cf4c20000803ff62e72c19a991541c1b4c2c20000803f2b0f69c1e27a344196f2cbc20000803f9d7686c152b816418c0dbbc20000803f08a3a9c15c8f2a414034e6c20000803f
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &668764990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18264,11 +18264,11 @@ PrefabInstance:
     - target: {fileID: 873606921009702139, guid: c0c5c1f152b9fc44a8dc91451665f760, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
       value: 
-      objectReference: {fileID: 497067951}
+      objectReference: {fileID: 1815555400}
     - target: {fileID: 2993892118262295031, guid: c0c5c1f152b9fc44a8dc91451665f760, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
       value: 
-      objectReference: {fileID: 1854691728}
+      objectReference: {fileID: 665590034}
     - target: {fileID: 3641251155163695355, guid: c0c5c1f152b9fc44a8dc91451665f760, type: 3}
       propertyPath: m_Name
       value: VFX_Oasis
@@ -26694,6 +26694,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ccd86a2f5649dfa4c86f649a97900097, type: 3}
   m_PrefabInstance: {fileID: 1803582755}
   m_PrefabAsset: {fileID: 0}
+--- !u!28 &1815555400
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: VFXG_Falling_Sand_Rocks_A_PositionMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 4
+  m_Width: 9
+  m_Height: 1
+  m_CompleteImageSize: 144
+  m_MipsStripped: 0
+  m_TextureFormat: 20
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_IsPreProcessed: 0
+  m_IgnoreMipmapLimit: 1
+  m_MipmapLimitGroupName: 
+  m_StreamingMipmaps: 0
+  m_StreamingMipmapsPriority: 0
+  m_VTOnly: 0
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 0
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 0
+    m_WrapV: 0
+    m_WrapW: 0
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  m_PlatformBlob: 
+  image data: 144
+  _typelessdata: 5a67224147e166419abda9c20000803f5ea5fa40cdcc54411cab9ec20000803f1fdf334114ae634196d7b1c20000803ff79a2941068161412a27b9c20000803f0d7e4f411e854f41ca22c1c20000803f9ca2794100006041ac89cec20000803f4088a941703d4241e1b4ddc20000803f1a9ab341ae47454142e7edc20000803fe229c441ae474541cc93f9c20000803f
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &1821260862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27498,52 +27544,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 599465214307944399, guid: 1829a7b4702730042bca3314bdcd0287, type: 3}
   m_PrefabInstance: {fileID: 1853297821}
   m_PrefabAsset: {fileID: 0}
---- !u!28 &1854691728
-Texture2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: VFXG_Falling_Sand_Rocks_B_PositionMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 4
-  m_Width: 6
-  m_Height: 1
-  m_CompleteImageSize: 96
-  m_MipsStripped: 0
-  m_TextureFormat: 20
-  m_MipCount: 1
-  m_IsReadable: 1
-  m_IsPreProcessed: 0
-  m_IgnoreMipmapLimit: 1
-  m_MipmapLimitGroupName: 
-  m_StreamingMipmaps: 0
-  m_StreamingMipmapsPriority: 0
-  m_VTOnly: 0
-  m_AlphaIsTransparency: 0
-  m_ImageCount: 1
-  m_TextureDimension: 2
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 0
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 0
-    m_WrapV: 0
-    m_WrapW: 0
-  m_LightmapFormat: 0
-  m_ColorSpace: 1
-  m_PlatformBlob: 
-  image data: 96
-  _typelessdata: eea978c1a47035418756d5c20000803ff77acac168668e40a06cf4c20000803ff62e72c19a991541c1b4c2c20000803f2b0f69c1e27a344196f2cbc20000803f9d7686c152b816418c0dbbc20000803f08a3a9c15c8f2a414034e6c20000803f
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1001 &1860874282
 PrefabInstance:
   m_ObjectHideFlags: 0
