@@ -57,6 +57,12 @@ namespace Taiyun.SuckTheWater.Gameplay
         [Range(0.1f, 1f)] [Tooltip("Rotation speed multiplier when aiming")]
         public float AimingRotationMultiplier = 0.4f;
 
+        [Tooltip("Maximum upward look pitch in degrees.")]
+        public float MaxLookPitch = 75f;
+
+        [Tooltip("Maximum downward look pitch in degrees.")]
+        public float MaxLookPitchDown = 70f;
+
         [Header("Jump")] [Tooltip("Force applied upward when jumping")]
         public float JumpForce = 9f;
 
@@ -115,6 +121,7 @@ namespace Taiyun.SuckTheWater.Gameplay
         public bool HasJumpedThisFrame { get; private set; }
         public bool IsDead { get; private set; }
         public bool IsCrouching { get; private set; }
+        public float LookPitchDegrees => m_CameraVerticalAngle;
 
         public float RotationMultiplier
         {
@@ -180,6 +187,12 @@ namespace Taiyun.SuckTheWater.Gameplay
             // force the crouch state to false when starting
             SetCrouchingState(false, true);
             UpdateCharacterHeight(true);
+        }
+
+        void OnValidate()
+        {
+            MaxLookPitch = Mathf.Clamp(MaxLookPitch, 1f, 89f);
+            MaxLookPitchDown = Mathf.Clamp(MaxLookPitchDown, 1f, 89f);
         }
 
         void Update()
@@ -292,7 +305,7 @@ namespace Taiyun.SuckTheWater.Gameplay
                 m_CameraVerticalAngle += m_InputHandler.GetLookInputsVertical() * RotationSpeed * RotationMultiplier;
 
                 // limit the camera's vertical angle to min/max
-                m_CameraVerticalAngle = Mathf.Clamp(m_CameraVerticalAngle, -89f, 89f);
+                m_CameraVerticalAngle = Mathf.Clamp(m_CameraVerticalAngle, -MaxLookPitchDown, MaxLookPitch);
 
                 // apply the vertical angle as a local rotation to the camera transform along its right axis (makes it pivot up and down)
                 PlayerCamera.transform.localEulerAngles = new Vector3(m_CameraVerticalAngle, 0, 0);

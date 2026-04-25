@@ -16,107 +16,112 @@ namespace Taiyun.SuckTheWater.Gameplay
     public class NetworkedMovementAdapter : NetworkBehaviour
     {
         #region References
-
+        
         private PlayerCharacterController _characterController;
         private NetworkedPlayerController _networkedPlayer;
         private CharacterController _unityCharController;
-
+        
         #endregion
-
+        
         #region Network Variables (SyncVars)
-
+        
         /// <summary>
         /// Synced position for remote player interpolation.
         /// Server Authoritative - owner reports, server writes.
         /// </summary>
         public SyncVar<Vector3> NetworkPosition = new SyncVar<Vector3>(default);
-
+        
         /// <summary>
         /// Synced rotation for remote player interpolation.
         /// Server Authoritative - owner reports, server writes.
         /// </summary>
         public SyncVar<Quaternion> NetworkRotation = new SyncVar<Quaternion>(Quaternion.identity);
-
+        
         /// <summary>
         /// Server-synced position for reconciliation (client prediction correction).
         /// Server Authoritative.
         /// </summary>
         private SyncVar<Vector3> _serverPosition = new SyncVar<Vector3>(default);
-
+        
         /// <summary>
         /// Synced crouching state.
         /// Owner Authoritative (owner writes directly).
         /// </summary>
         public SyncVar<bool> IsCrouching = new SyncVar<bool>(false, ownerAuth: true);
-
+        
         /// <summary>
         /// Synced grounded state (for animations).
         /// Owner Authoritative.
         /// </summary>
         public SyncVar<bool> IsGrounded = new SyncVar<bool>(true, ownerAuth: true);
-
+        
         /// <summary>
         /// Synced velocity for prediction/animation.
         /// Owner Authoritative.
         /// </summary>
         public SyncVar<Vector3> Velocity = new SyncVar<Vector3>(default, ownerAuth: true);
 
+        /// <summary>
+        /// Owner-authored local look pitch in degrees. Used only for presentation rigs.
+        /// </summary>
+        public SyncVar<float> LookPitchDegrees = new SyncVar<float>(0f, ownerAuth: true);
+        
         #endregion
-
+        
         #region Settings
-
+        
         [Header("Network Settings")]
         [Tooltip("How often to sync state to server (per second)")]
         [SerializeField] private float _syncRate = 20f;
-
+        
         [Tooltip("Position difference threshold for reconciliation")]
         [SerializeField] private float _reconciliationThreshold = 0.5f;
 
         [Tooltip("Only enable if the server actually validates or clamps owner movement. With the current client-auth echo path, owner reconciliation causes jitter.")]
         [SerializeField] private bool _enableOwnerReconciliation = false;
-
+        
         [Header("Remote Player Interpolation")]
         [Tooltip("How fast remote players interpolate to network position")]
         [SerializeField] private float _interpolationSpeed = 15f;
-
+        
         [Tooltip("Distance threshold to snap instead of interpolate")]
         [SerializeField] private float _snapThreshold = 5f;
-
+        
         #endregion
-
+        
         #region Private State
-
+        
         private float _lastSyncTime;
         private float _syncInterval;
         private float _lastServerPositionReceiveTime = -1f;
-
+        
         // Local cache to handle "Previous vs Current" logic since PurrNet SyncVar 
         // onChanged only gives the new value.
         private bool _prevCrouching;
         private bool _prevGrounded;
         private bool _hasReceivedServerPosition;
-
+        
         private bool _isInitialized = false;
-
+        
         #endregion
-
+        
         #region Unity Lifecycle
-
+        
         private void Awake()
         {
             _networkedPlayer = GetComponent<NetworkedPlayerController>();
             _unityCharController = GetComponent<CharacterController>();
-
+            
             // CharacterController might be optional for remote players
             _characterController = GetComponent<PlayerCharacterController>();
-
+            
             _syncInterval = 1f / _syncRate;
         }
-
+        
         private void Update()
         {
             if (!_isInitialized) return;
-
+            
             if (isOwner)
             {
                 UpdateLocalPlayer();
@@ -126,17 +131,17 @@ namespace Taiyun.SuckTheWater.Gameplay
                 UpdateRemotePlayer();
             }
         }
-
+        
         #endregion
-
+        
         #region Network Lifecycle
-
+        
         protected override void OnSpawned(bool asServer)
         {
             base.OnSpawned(asServer);
-
+            
             Debug.Log($"[NetworkedMovementAdapter] OnSpawned - asServer: {asServer}, isServer: {isServer}, isOwner: {isOwner}");
-
+            
             // FIX: On host, OnSpawned fires twice (asServer=true, then asServer=false)
             // We only want to initialize once. Skip the client-side call on host.
             if (!asServer && isServer)
@@ -144,14 +149,14 @@ namespace Taiyun.SuckTheWater.Gameplay
                 Debug.Log("[NetworkedMovementAdapter] Skipping host's client-side OnSpawned call");
                 return;
             }
-
+            
             // Prevent double initialization
             if (_isInitialized)
             {
                 Debug.LogWarning("[NetworkedMovementAdapter] Already initialized, skipping");
                 return;
             }
-
+            
             // Initialize previous states to match current SyncVar values to avoid startup spikes
             _prevCrouching = IsCrouching.value;
             _prevGrounded = IsGrounded.value;
@@ -162,7 +167,7 @@ namespace Taiyun.SuckTheWater.Gameplay
             IsCrouching.onChanged += OnCrouchingChanged;
             IsGrounded.onChanged += OnGroundedChanged;
             _serverPosition.onChanged += OnServerPositionChanged;
-
+            
             // Initialize network position to current position
             if (isServer)
             {
@@ -170,11 +175,11 @@ namespace Taiyun.SuckTheWater.Gameplay
                 NetworkRotation.value = transform.rotation;
                 _serverPosition.value = transform.position;
             }
-
+            
             _isInitialized = true;
             Debug.Log($"[NetworkedMovementAdapter] Initialized - Owner: {isOwner}");
         }
-
+        
         protected override void OnDespawned()
         {
             if (_isInitialized)
@@ -184,14 +189,14 @@ namespace Taiyun.SuckTheWater.Gameplay
                 _serverPosition.onChanged -= OnServerPositionChanged;
             }
             _isInitialized = false;
-
+            
             base.OnDespawned();
         }
-
+        
         #endregion
-
+        
         #region Local Player Update
-
+        
         private void UpdateLocalPlayer()
         {
             // Sync state at regular intervals
@@ -200,7 +205,7 @@ namespace Taiyun.SuckTheWater.Gameplay
                 SyncState();
                 _lastSyncTime = Time.time;
             }
-
+            
             // Server reconciliation check
             // If we are a client (not the host/server), check against server position
             if (_enableOwnerReconciliation && isClient && !isServer)
@@ -208,7 +213,7 @@ namespace Taiyun.SuckTheWater.Gameplay
                 CheckReconciliation();
             }
         }
-
+        
         private void SyncState()
         {
             // Update owner-authoritative network variables (owner writes directly)
@@ -218,14 +223,16 @@ namespace Taiyun.SuckTheWater.Gameplay
                 IsCrouching.value = _characterController.IsCrouching;
                 IsGrounded.value = _characterController.IsGrounded;
                 Velocity.value = _characterController.CharacterVelocity;
+                LookPitchDegrees.value = _characterController.LookPitchDegrees;
             }
             else
             {
                 // Fallback for simple test objects without full character controller
                 IsGrounded.value = true;
                 Velocity.value = Vector3.zero;
+                LookPitchDegrees.value = 0f;
             }
-
+            
             // Report position to server for validation and remote sync
             if (!isServer)
             {
@@ -240,7 +247,7 @@ namespace Taiyun.SuckTheWater.Gameplay
                 NetworkRotation.value = transform.rotation;
             }
         }
-
+        
         private void CheckReconciliation()
         {
             if (!_hasReceivedServerPosition)
@@ -275,7 +282,7 @@ namespace Taiyun.SuckTheWater.Gameplay
             if (distance > allowedDistance)
             {
                 Debug.LogWarning($"[NetworkedMovementAdapter] Reconciliation needed - Distance: {distance}, Allowed: {allowedDistance}");
-
+                
                 // Snap to server position
                 if (_unityCharController != null)
                 {
@@ -300,53 +307,53 @@ namespace Taiyun.SuckTheWater.Gameplay
             _hasReceivedServerPosition = true;
             _lastServerPositionReceiveTime = Time.time;
         }
-
+        
         [ServerRpc]
         private void ReportPositionServerRpc(Vector3 clientPosition, Quaternion clientRotation)
         {
             // Server validates and stores the authoritative position
             // In a strict server-auth system, you would validate the move here.
             // Since this is client-auth movement with reconciliation, we accept it.
-
+            
             // TODO: Add basic anti-cheat validation here if needed:
             // - Check distance moved since last update
             // - Verify player isn't moving through walls
             // - Cap maximum velocity
-
+            
             // These SyncVars are NOT ownerAuth, so only the Server can write to them.
             _serverPosition.value = clientPosition;
             NetworkPosition.value = clientPosition;
             NetworkRotation.value = clientRotation;
         }
-
+        
         #endregion
-
+        
         #region Remote Player Update
-
+        
         private void UpdateRemotePlayer()
         {
             // Interpolate toward network position for smooth movement
             Vector3 targetPos = NetworkPosition.value;
             Quaternion targetRot = NetworkRotation.value;
-
+            
             // Skip if target is default/uninitialized
             if (targetPos == Vector3.zero && NetworkPosition.value == default)
             {
                 return;
             }
-
+            
             // If too far away, snap instead of interpolate (teleport, spawn, etc.)
             float distance = Vector3.Distance(transform.position, targetPos);
             if (distance > _snapThreshold)
             {
                 // Disable CharacterController to allow direct position set
                 if (_unityCharController != null) _unityCharController.enabled = false;
-
+                
                 transform.position = targetPos;
                 transform.rotation = targetRot;
-
+                
                 if (_unityCharController != null) _unityCharController.enabled = true;
-
+                
                 Debug.Log($"[NetworkedMovementAdapter] Remote player snapped - Distance was {distance}");
             }
             else if (distance > 0.01f) // Only interpolate if there's meaningful difference
@@ -357,11 +364,11 @@ namespace Taiyun.SuckTheWater.Gameplay
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * _interpolationSpeed);
             }
         }
-
+        
         #endregion
-
+        
         #region State Change Handlers
-
+        
         private void OnCrouchingChanged(bool current)
         {
             // Calculate 'previous' state manually
@@ -375,7 +382,7 @@ namespace Taiyun.SuckTheWater.Gameplay
                 // TODO: Trigger crouch animation for remote players
             }
         }
-
+        
         private void OnGroundedChanged(bool current)
         {
             bool previous = _prevGrounded;
@@ -389,11 +396,11 @@ namespace Taiyun.SuckTheWater.Gameplay
                 // TODO: Trigger landing animation/sound for remote players
             }
         }
-
+        
         #endregion
-
+        
         #region Public API
-
+        
         /// <summary>
         /// Force sync state immediately
         /// </summary>
@@ -404,7 +411,7 @@ namespace Taiyun.SuckTheWater.Gameplay
                 SyncState();
             }
         }
-
+        
         /// <summary>
         /// Get the velocity (works for local and remote players)
         /// </summary>
@@ -416,7 +423,7 @@ namespace Taiyun.SuckTheWater.Gameplay
             }
             return Velocity.value;
         }
-
+        
         /// <summary>
         /// Check if player is grounded (works for local and remote)
         /// </summary>
@@ -428,7 +435,7 @@ namespace Taiyun.SuckTheWater.Gameplay
             }
             return IsGrounded.value;
         }
-
+        
         /// <summary>
         /// Get network-synced position (useful for remote player logic)
         /// </summary>
@@ -436,7 +443,7 @@ namespace Taiyun.SuckTheWater.Gameplay
         {
             return NetworkPosition.value;
         }
-
+        
         /// <summary>
         /// Get network-synced rotation (useful for remote player logic)
         /// </summary>
@@ -445,6 +452,19 @@ namespace Taiyun.SuckTheWater.Gameplay
             return NetworkRotation.value;
         }
 
+        /// <summary>
+        /// Get network-synced look pitch in degrees (owner-local or replicated remote).
+        /// </summary>
+        public float GetLookPitchDegrees()
+        {
+            if (isOwner && _characterController != null)
+            {
+                return _characterController.LookPitchDegrees;
+            }
+
+            return LookPitchDegrees.value;
+        }
+        
         #endregion
     }
 }

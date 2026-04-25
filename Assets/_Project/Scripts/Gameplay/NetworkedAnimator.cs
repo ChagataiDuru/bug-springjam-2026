@@ -1,12 +1,13 @@
 using PurrNet;
+using System.Collections.Generic;
 using Taiyun.SuckTheWater.Game;
 using UnityEngine;
 
 namespace Taiyun.SuckTheWater.Gameplay
 {
     /// <summary>
-    /// Drives the third-person mech Animator from state already synchronized by
-    /// NetworkedMovementAdapter. This adds no extra network traffic.
+    /// Drives the visible mech Animator for either the local first-person overlay
+    /// or the remote third-person presentation using already-synchronized gameplay state.
     /// </summary>
     [RequireComponent(typeof(NetworkedPlayerController))]
     [RequireComponent(typeof(NetworkedMovementAdapter))]
@@ -16,9 +17,21 @@ namespace Taiyun.SuckTheWater.Gameplay
 
         #region Serialized Fields
 
-        [Header("Animator Reference")]
-        [Tooltip("Animator on the third-person mech model. Auto-found in children if null.")]
-        [SerializeField] private Animator _animator;
+        [Header("Animator References")]
+        [Tooltip("Animator used for the remote third-person mech presentation.")]
+        [SerializeField] private Animator _thirdPersonAnimator;
+
+        [Tooltip("Animator used for the owner's local first-person mech overlay.")]
+        [SerializeField] private Animator _firstPersonAnimator;
+
+        [Tooltip("Animator used for the owner's local shadow-only body proxy.")]
+        [SerializeField] private Animator _ownerShadowAnimator;
+
+        [Tooltip("Additional owner-only animators driven by local presentation state.")]
+        [SerializeField] private Animator[] _ownerPresentationAnimators;
+
+        [Tooltip("Additional remote third-person animators driven by replicated presentation state.")]
+        [SerializeField] private Animator[] _remotePresentationAnimators;
 
         [Header("Parameter Names")]
         [SerializeField] private string _moveXParam = "MoveX";
@@ -59,6 +72,11 @@ namespace Taiyun.SuckTheWater.Gameplay
         #region Private State
 
         private NetworkedMovementAdapter _adapter;
+        private NetworkedPlayerController _networkedPlayer;
+        private NetworkedWeaponDriver _weaponDriver;
+        private Health _health;
+        private PlayerCharacterController _ownerController;
+
         private int _hashMoveX;
         private int _hashMoveZ;
         private int _hashSpeed;
@@ -69,11 +87,8 @@ namespace Taiyun.SuckTheWater.Gameplay
         private int _hashHitTrigger;
         private int _hashIsDead;
         private int _hashJumpMidState;
-        private PlayerCharacterController _ownerController;
-        private NetworkedWeaponDriver _weaponDriver;
-        private NetworkedPlayerController _networkedPlayer;
-        private Health _health;
         private bool _ready;
+        private readonly List<Animator> _animatorVisitBuffer = new List<Animator>(4);
 
         #endregion
 
@@ -82,33 +97,27 @@ namespace Taiyun.SuckTheWater.Gameplay
         private void Awake()
         {
             _adapter = GetComponent<NetworkedMovementAdapter>();
-
-            if (_animator == null)
-            {
-                _animator = FindBestAnimator();
-            }
+            _networkedPlayer = GetComponent<NetworkedPlayerController>();
+            CacheAnimatorReferences();
         }
 
         private void Update()
         {
-            if (!_ready || _animator == null)
+            if (!_ready)
             {
                 return;
             }
 
-            // Owner third-person visuals are inactive, so there is no useful Animator work to do.
-            if (!_animator.gameObject.activeInHierarchy)
+            ForEachCurrentPresentationAnimator(animator =>
             {
-                return;
-            }
+                if (!IsAnimatorUsable(animator) || animator.GetBool(_hashIsDead))
+                {
+                    return;
+                }
 
-            if (_animator.GetBool(_hashIsDead))
-            {
-                return;
-            }
-
-            UpdateLocomotionParameters();
-            UpdateStateBools();
+                UpdateLocomotionParameters(animator);
+                UpdateStateBools(animator);
+            });
         }
 
         private void OnValidate()
@@ -141,20 +150,20 @@ namespace Taiyun.SuckTheWater.Gameplay
                 return;
             }
 
-            if (_animator == null)
-            {
-                _animator = FindBestAnimator();
-            }
+            CacheAnimatorReferences();
+            _adapter ??= GetComponent<NetworkedMovementAdapter>();
+            _networkedPlayer ??= GetComponent<NetworkedPlayerController>();
 
-            if (_animator == null)
+            Animator currentAnimator = GetPrimaryPresentationAnimator();
+            if (currentAnimator == null)
             {
-                Debug.LogError($"[NetworkedAnimator] No Animator found on third-person model for player {owner?.id}.");
+                Debug.LogError($"[NetworkedAnimator] Missing {(isOwner ? "owner" : "remote")} presentation Animator for player {owner?.id}.");
                 return;
             }
 
-            if (_animator.runtimeAnimatorController == null)
+            if (currentAnimator.runtimeAnimatorController == null)
             {
-                Debug.LogError($"[NetworkedAnimator] Animator has no controller assigned for player {owner?.id}.");
+                Debug.LogError($"[NetworkedAnimator] {(isOwner ? "First-person" : "Third-person")} Animator has no controller assigned for player {owner?.id}.");
                 return;
             }
 
@@ -169,9 +178,8 @@ namespace Taiyun.SuckTheWater.Gameplay
             _hashIsDead = Animator.StringToHash(_isDeadParam);
             _hashJumpMidState = Animator.StringToHash("Jump_Mid");
 
-            _ready = true;
-
-            _networkedPlayer = GetComponent<NetworkedPlayerController>();
+            _weaponDriver = GetComponent<NetworkedWeaponDriver>();
+            _health = GetComponent<Health>();
 
             if (isOwner)
             {
@@ -183,17 +191,31 @@ namespace Taiyun.SuckTheWater.Gameplay
                 }
                 else
                 {
-                    Debug.LogWarning("[NetworkedAnimator] Owner has no PlayerCharacterController; jump replication disabled");
+                    Debug.LogWarning("[NetworkedAnimator] Owner has no PlayerCharacterController; jump animation disabled");
+                }
+
+                if (_weaponDriver != null)
+                {
+                    _weaponDriver.OnLocalUseIntentRaised += HandleLocalWeaponUse;
+                }
+                else
+                {
+                    Debug.LogWarning("[NetworkedAnimator] Owner has no NetworkedWeaponDriver; first-person firing animation disabled");
                 }
             }
-            else if (!_adapter.GetIsGrounded())
+            else
             {
-                _animator.Play(_hashJumpMidState, 0, 0f);
-            }
+                if (!_adapter.GetIsGrounded())
+                {
+                    ForEachCurrentPresentationAnimator(animator =>
+                    {
+                        if (IsAnimatorUsable(animator))
+                        {
+                            animator.Play(_hashJumpMidState, 0, 0f);
+                        }
+                    });
+                }
 
-            if (!isOwner)
-            {
-                _weaponDriver = GetComponent<NetworkedWeaponDriver>();
                 if (_weaponDriver != null)
                 {
                     _weaponDriver.OnObserverUseReplicatedEvent += HandleObservedWeaponUse;
@@ -202,14 +224,17 @@ namespace Taiyun.SuckTheWater.Gameplay
                 {
                     Debug.LogWarning("[NetworkedAnimator] No NetworkedWeaponDriver; third-person firing animation disabled");
                 }
-
-                if (_networkedPlayer != null)
-                {
-                    _networkedPlayer.OnDamageReplicatedEvent += HandleDamageReplicated;
-                }
             }
 
-            _health = GetComponent<Health>();
+            if (_networkedPlayer != null)
+            {
+                _networkedPlayer.OnDamageReplicatedEvent += HandleDamageReplicated;
+            }
+            else
+            {
+                Debug.LogWarning("[NetworkedAnimator] No NetworkedPlayerController; damage reactions disabled");
+            }
+
             if (_health != null)
             {
                 _health.OnDie += HandleDeath;
@@ -219,21 +244,23 @@ namespace Taiyun.SuckTheWater.Gameplay
                 Debug.LogWarning("[NetworkedAnimator] No Health component; death animation disabled");
             }
 
+            _ready = true;
             Debug.Log($"[NetworkedAnimator] Initialized for player {owner?.id}, isOwner: {isOwner}");
         }
 
         protected override void OnDespawned()
         {
-            if (_weaponDriver != null)
-            {
-                _weaponDriver.OnObserverUseReplicatedEvent -= HandleObservedWeaponUse;
-                _weaponDriver = null;
-            }
-
             if (_ownerController != null)
             {
                 _ownerController.OnJumpStarted -= HandleOwnerJumped;
                 _ownerController = null;
+            }
+
+            if (_weaponDriver != null)
+            {
+                _weaponDriver.OnLocalUseIntentRaised -= HandleLocalWeaponUse;
+                _weaponDriver.OnObserverUseReplicatedEvent -= HandleObservedWeaponUse;
+                _weaponDriver = null;
             }
 
             if (_networkedPlayer != null)
@@ -256,7 +283,7 @@ namespace Taiyun.SuckTheWater.Gameplay
 
         #region Parameter Driving
 
-        private void UpdateLocomotionParameters()
+        private void UpdateLocomotionParameters(Animator animator)
         {
             Vector3 worldVelocity = _adapter.GetVelocity();
             Vector3 localVelocity = transform.InverseTransformDirection(worldVelocity);
@@ -271,15 +298,15 @@ namespace Taiyun.SuckTheWater.Gameplay
             float horizontalSpeed = new Vector2(localVelocity.x, localVelocity.z).magnitude;
             float speed = GetNormalizedSpeed(horizontalSpeed, isCrouching);
 
-            _animator.SetFloat(_hashMoveX, moveX, _locomotionDamp, Time.deltaTime);
-            _animator.SetFloat(_hashMoveZ, moveZ, _locomotionDamp, Time.deltaTime);
-            _animator.SetFloat(_hashSpeed, speed, _locomotionDamp, Time.deltaTime);
+            animator.SetFloat(_hashMoveX, moveX, _locomotionDamp, Time.deltaTime);
+            animator.SetFloat(_hashMoveZ, moveZ, _locomotionDamp, Time.deltaTime);
+            animator.SetFloat(_hashSpeed, speed, _locomotionDamp, Time.deltaTime);
         }
 
-        private void UpdateStateBools()
+        private void UpdateStateBools(Animator animator)
         {
-            _animator.SetBool(_hashIsGrounded, _adapter.GetIsGrounded());
-            _animator.SetBool(_hashIsCrouching, _adapter.IsCrouching.value);
+            animator.SetBool(_hashIsGrounded, _adapter.GetIsGrounded());
+            animator.SetBool(_hashIsCrouching, _adapter.IsCrouching.value);
         }
 
         private float GetNormalizedSpeed(float horizontalSpeed, bool isCrouching)
@@ -300,49 +327,140 @@ namespace Taiyun.SuckTheWater.Gameplay
             return 0.5f + runBlend * 0.5f;
         }
 
-        private Animator FindBestAnimator()
+        private void CacheAnimatorReferences()
         {
-            Animator[] animators = GetComponentsInChildren<Animator>(true);
+            if (_thirdPersonAnimator == null)
+            {
+                _thirdPersonAnimator = FindAnimatorUnderNamedRoot("ThirdPersonVisualRoot");
+            }
 
-            if (animators.Length == 0)
+            if (_firstPersonAnimator == null)
+            {
+                _firstPersonAnimator = FindAnimatorUnderNamedRoot("FirstPersonVisualRoot");
+            }
+
+            if (_ownerShadowAnimator == null)
+            {
+                _ownerShadowAnimator = FindAnimatorUnderNamedRoot("OwnerShadowVisualRoot");
+            }
+        }
+
+        private Animator FindAnimatorUnderNamedRoot(string rootName)
+        {
+            Transform root = FindTransformRecursive(transform, rootName);
+            return root != null ? root.GetComponentInChildren<Animator>(true) : null;
+        }
+
+        private Transform FindTransformRecursive(Transform root, string targetName)
+        {
+            if (root.name == targetName)
+            {
+                return root;
+            }
+
+            for (int i = 0; i < root.childCount; i++)
+            {
+                Transform found = FindTransformRecursive(root.GetChild(i), targetName);
+                if (found != null)
+                {
+                    return found;
+                }
+            }
+
+            return null;
+        }
+
+        private Animator GetPrimaryPresentationAnimator()
+        {
+            if (isOwner)
+            {
+                Animator animator = GetFirstUsableAnimator(_ownerPresentationAnimators);
+                return animator != null ? animator : (_firstPersonAnimator != null ? _firstPersonAnimator : _ownerShadowAnimator);
+            }
+
+            Animator remoteAnimator = GetFirstUsableAnimator(_remotePresentationAnimators);
+            return remoteAnimator != null ? remoteAnimator : _thirdPersonAnimator;
+        }
+
+        private static Animator GetFirstUsableAnimator(Animator[] animators)
+        {
+            if (animators == null)
             {
                 return null;
             }
 
-            foreach (Animator animator in animators)
+            for (int i = 0; i < animators.Length; i++)
             {
-                if (animator.enabled && animator.runtimeAnimatorController != null)
+                if (animators[i] != null)
                 {
-                    return animator;
+                    return animators[i];
                 }
             }
 
-            foreach (Animator animator in animators)
+            return null;
+        }
+
+        private void ForEachCurrentPresentationAnimator(System.Action<Animator> action)
+        {
+            if (action == null)
             {
-                if (animator.runtimeAnimatorController != null)
-                {
-                    return animator;
-                }
+                return;
             }
 
-            foreach (Animator animator in animators)
+            if (isOwner)
             {
-                if (animator.enabled)
-                {
-                    return animator;
-                }
+                _animatorVisitBuffer.Clear();
+                VisitAnimatorUnique(_firstPersonAnimator, action);
+                VisitAnimatorUnique(_ownerShadowAnimator, action);
+                VisitAnimatorArray(_ownerPresentationAnimators, action);
+                return;
             }
 
-            return animators[0];
+            _animatorVisitBuffer.Clear();
+            VisitAnimatorUnique(_thirdPersonAnimator, action);
+            VisitAnimatorArray(_remotePresentationAnimators, action);
+        }
+
+        private void VisitAnimatorArray(Animator[] animators, System.Action<Animator> action)
+        {
+            if (animators == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < animators.Length; i++)
+            {
+                VisitAnimatorUnique(animators[i], action);
+            }
+        }
+
+        private void VisitAnimatorUnique(Animator animator, System.Action<Animator> action)
+        {
+            if (animator == null)
+            {
+                return;
+            }
+
+            if (_animatorVisitBuffer.Contains(animator))
+            {
+                return;
+            }
+
+            _animatorVisitBuffer.Add(animator);
+            action(animator);
+        }
+
+        private static bool IsAnimatorUsable(Animator animator)
+        {
+            return animator != null &&
+                   animator.gameObject.activeInHierarchy &&
+                   animator.runtimeAnimatorController != null;
         }
 
         #endregion
 
         #region Discrete Trigger Replication
 
-        /// <summary>
-        /// Owner-only. Invoked when the local character controller reports a jump.
-        /// </summary>
         private void HandleOwnerJumped()
         {
             if (!_ready)
@@ -350,6 +468,7 @@ namespace Taiyun.SuckTheWater.Gameplay
                 return;
             }
 
+            PlayAnimationTrigger(_hashJumpTrigger);
             RequestJumpServerRpc();
         }
 
@@ -371,29 +490,49 @@ namespace Taiyun.SuckTheWater.Gameplay
             PlayAnimationTrigger(_hashJumpTrigger);
         }
 
-        /// <summary>
-        /// Generic trigger helper for future discrete animations.
-        /// </summary>
         private void PlayAnimationTrigger(int hash)
         {
-            if (!_ready || _animator == null || !_animator.gameObject.activeInHierarchy)
+            if (!_ready)
             {
                 return;
             }
 
-            _animator.SetTrigger(hash);
+            ForEachCurrentPresentationAnimator(animator =>
+            {
+                if (IsAnimatorUsable(animator))
+                {
+                    animator.SetTrigger(hash);
+                }
+            });
         }
 
         #endregion
 
         #region Continuous State Replication
 
-        /// <summary>
-        /// Observer-only weapon use replication drives the third-person upper-body firing pose.
-        /// </summary>
+        private void HandleLocalWeaponUse(NetworkedWeaponDriver.WeaponUseIntentPayload payload)
+        {
+            if (!isOwner)
+            {
+                return;
+            }
+
+            HandleWeaponUse(payload);
+        }
+
         private void HandleObservedWeaponUse(NetworkedWeaponDriver.WeaponUseIntentPayload payload)
         {
-            if (!_ready || _animator == null || !_animator.gameObject.activeInHierarchy)
+            if (isOwner)
+            {
+                return;
+            }
+
+            HandleWeaponUse(payload);
+        }
+
+        private void HandleWeaponUse(NetworkedWeaponDriver.WeaponUseIntentPayload payload)
+        {
+            if (!_ready)
             {
                 return;
             }
@@ -406,10 +545,22 @@ namespace Taiyun.SuckTheWater.Gameplay
             switch (payload.usePhase)
             {
                 case NetworkedWeaponDriver.WeaponUsePhase.Begin:
-                    _animator.SetBool(_hashIsFiring, true);
+                    ForEachCurrentPresentationAnimator(animator =>
+                    {
+                        if (IsAnimatorUsable(animator))
+                        {
+                            animator.SetBool(_hashIsFiring, true);
+                        }
+                    });
                     break;
                 case NetworkedWeaponDriver.WeaponUsePhase.End:
-                    _animator.SetBool(_hashIsFiring, false);
+                    ForEachCurrentPresentationAnimator(animator =>
+                    {
+                        if (IsAnimatorUsable(animator))
+                        {
+                            animator.SetBool(_hashIsFiring, false);
+                        }
+                    });
                     break;
             }
         }
@@ -418,13 +569,9 @@ namespace Taiyun.SuckTheWater.Gameplay
 
         #region Damage & Death Replication
 
-        /// <summary>
-        /// Observer-side non-fatal damage plays a brief upper-body flinch.
-        /// Fatal damage is handled by Health.OnDie so direct kill paths work too.
-        /// </summary>
         private void HandleDamageReplicated(float appliedDamage, bool killed)
         {
-            if (!_ready || _animator == null || !_animator.gameObject.activeInHierarchy)
+            if (!_ready)
             {
                 return;
             }
@@ -437,18 +584,23 @@ namespace Taiyun.SuckTheWater.Gameplay
             PlayAnimationTrigger(_hashHitTrigger);
         }
 
-        /// <summary>
-        /// Local Health reports death once; hold the terminal Die state and stop firing.
-        /// </summary>
         private void HandleDeath()
         {
-            if (!_ready || _animator == null)
+            if (!_ready)
             {
                 return;
             }
 
-            _animator.SetBool(_hashIsDead, true);
-            _animator.SetBool(_hashIsFiring, false);
+            ForEachCurrentPresentationAnimator(animator =>
+            {
+                if (animator == null)
+                {
+                    return;
+                }
+
+                animator.SetBool(_hashIsDead, true);
+                animator.SetBool(_hashIsFiring, false);
+            });
             Debug.Log($"[NetworkedAnimator] Player {owner?.id} died; animation set to Die state");
         }
 
@@ -456,12 +608,10 @@ namespace Taiyun.SuckTheWater.Gameplay
 
         #region Debug API
 
-        /// <summary>
-        /// Reads current Animator parameter values for future debug tooling.
-        /// </summary>
         public void GetDebugSnapshot(out float moveX, out float moveZ, out float speed, out bool isGrounded, out bool isCrouching)
         {
-            if (!_ready || _animator == null)
+            Animator animator = GetPrimaryPresentationAnimator();
+            if (!_ready || animator == null)
             {
                 moveX = 0f;
                 moveZ = 0f;
@@ -471,11 +621,11 @@ namespace Taiyun.SuckTheWater.Gameplay
                 return;
             }
 
-            moveX = _animator.GetFloat(_hashMoveX);
-            moveZ = _animator.GetFloat(_hashMoveZ);
-            speed = _animator.GetFloat(_hashSpeed);
-            isGrounded = _animator.GetBool(_hashIsGrounded);
-            isCrouching = _animator.GetBool(_hashIsCrouching);
+            moveX = animator.GetFloat(_hashMoveX);
+            moveZ = animator.GetFloat(_hashMoveZ);
+            speed = animator.GetFloat(_hashSpeed);
+            isGrounded = animator.GetBool(_hashIsGrounded);
+            isCrouching = animator.GetBool(_hashIsCrouching);
         }
 
         #endregion

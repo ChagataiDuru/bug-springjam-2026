@@ -903,7 +903,6 @@ namespace Taiyun.SuckTheWater.Gameplay
             return applied;
         }
 
-        // ─────────────────────────────────────────────────────────────────────
 
         float ResolveAuthoritativeDamage(WeaponController weapon, float chargeRatio)
         {
@@ -1589,6 +1588,7 @@ namespace Taiyun.SuckTheWater.Gameplay
             {
                 return 0f;
             }
+
             if (!weapon.IsCharging)
             {
                 return Mathf.Clamp01(weapon.CurrentCharge);
