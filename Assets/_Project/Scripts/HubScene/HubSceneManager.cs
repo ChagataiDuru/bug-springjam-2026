@@ -790,6 +790,7 @@ namespace Taiyun.SuckTheWater.HubScene
             {
                 _readyButtonText.text = _localIsReady ? "Not Ready" : "Ready";
             }
+            _readyButton?.GetComponent<ButtonHoverGlow>()?.SetState(_localIsReady);
         }
 
         #region Lobby Button Handlers
