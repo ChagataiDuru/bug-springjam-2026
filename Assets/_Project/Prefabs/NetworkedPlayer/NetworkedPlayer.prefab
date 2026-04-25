@@ -10695,6 +10695,7 @@ MonoBehaviour:
     _sendIntervalInSeconds: 0
   _syncRate: 20
   _reconciliationThreshold: 0.5
+  _enableOwnerReconciliation: 0
   _interpolationSpeed: 15
   _snapThreshold: 5
 --- !u!114 &3579956106307169048
