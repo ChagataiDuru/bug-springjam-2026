@@ -63,6 +63,15 @@ namespace Taiyun.SuckTheWater.Gameplay
 
         #endregion
 
+        protected override void OnInitializeModules()
+        {
+            base.OnInitializeModules();
+
+            IsCrouching = new SyncVar<bool>(false, ownerAuth: true);
+            IsGrounded = new SyncVar<bool>(true, ownerAuth: true);
+            Velocity = new SyncVar<Vector3>(default, ownerAuth: true);
+        }
+
         #region Settings
 
         [Header("Network Settings")]

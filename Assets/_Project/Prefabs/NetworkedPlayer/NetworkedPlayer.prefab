@@ -10683,15 +10683,15 @@ MonoBehaviour:
     _sendIntervalInSeconds: 0
   IsCrouching:
     _value: 0
-    _ownerAuth: 0
+    _ownerAuth: 1
     _sendIntervalInSeconds: 0
   IsGrounded:
     _value: 1
-    _ownerAuth: 0
+    _ownerAuth: 1
     _sendIntervalInSeconds: 0
   Velocity:
     _value: {x: 0, y: 0, z: 0}
-    _ownerAuth: 0
+    _ownerAuth: 1
     _sendIntervalInSeconds: 0
   _syncRate: 20
   _reconciliationThreshold: 0.5
@@ -10961,6 +10961,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2429815536087836218}
     m_Modifications:
+    - target: {fileID: 6014005062838958947, guid: bdbb032e93f67984e9a18a3b46af4885, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014005062838958947, guid: bdbb032e93f67984e9a18a3b46af4885, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5336895
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071140153573886204, guid: bdbb032e93f67984e9a18a3b46af4885, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071140153573886204, guid: bdbb032e93f67984e9a18a3b46af4885, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ca4ba0fc3e00624419fab281bba8ed7f, type: 2}
     - target: {fileID: 409476182017729031, guid: 147d9a89b2b9fda4986922555995c3fc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -11017,22 +11033,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6014005062838958947, guid: bdbb032e93f67984e9a18a3b46af4885, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014005062838958947, guid: bdbb032e93f67984e9a18a3b46af4885, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.5336895
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071140153573886204, guid: bdbb032e93f67984e9a18a3b46af4885, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071140153573886204, guid: bdbb032e93f67984e9a18a3b46af4885, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ca4ba0fc3e00624419fab281bba8ed7f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
