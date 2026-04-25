@@ -6863,7 +6863,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   _invertedPathToNearestParent: 
   _directChildren: []
-  PlayerPrefab: {fileID: 7253983127304857660, guid: b2e233a6fb87747588240d77bf629538, type: 3}
+  PlayerPrefab: {fileID: 7253983127304857660, guid: 5f2896f5b6a9143419152805e4c79cbf, type: 3}
   _spawnPoints:
   - {fileID: 1399706987}
   _spawnPointTag: SpawnPoint
@@ -14417,9 +14417,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4324892008981323969, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.669999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324892008981323969, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.6790391
+      objectReference: {fileID: 0}
     - target: {fileID: 4328224450451669867, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Bank_Door_01 Variant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331031266675265183, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.6699994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331031266675265183, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.6790351
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
