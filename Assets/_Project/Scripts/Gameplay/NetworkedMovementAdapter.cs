@@ -72,6 +72,9 @@ namespace Taiyun.SuckTheWater.Gameplay
         [Tooltip("Position difference threshold for reconciliation")]
         [SerializeField] private float _reconciliationThreshold = 0.5f;
 
+        [Tooltip("Only enable if the server actually validates or clamps owner movement. With the current client-auth echo path, owner reconciliation causes jitter.")]
+        [SerializeField] private bool _enableOwnerReconciliation = false;
+
         [Header("Remote Player Interpolation")]
         [Tooltip("How fast remote players interpolate to network position")]
         [SerializeField] private float _interpolationSpeed = 15f;
@@ -200,7 +203,7 @@ namespace Taiyun.SuckTheWater.Gameplay
 
             // Server reconciliation check
             // If we are a client (not the host/server), check against server position
-            if (isClient && !isServer)
+            if (_enableOwnerReconciliation && isClient && !isServer)
             {
                 CheckReconciliation();
             }
