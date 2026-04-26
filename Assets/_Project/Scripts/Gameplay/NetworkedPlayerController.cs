@@ -5,7 +5,12 @@ using Taiyun.SuckTheWater.Game;
 
 namespace Taiyun.SuckTheWater.Gameplay
 {
-    public class NetworkedPlayerController : NetworkBehaviour
+    public interface IPlayerMovementLock
+    {
+        void SetMovementLocked(bool locked);
+    }
+
+    public class NetworkedPlayerController : NetworkBehaviour, IPlayerMovementLock
     {
         #region Serialized Fields
         
@@ -68,11 +73,37 @@ namespace Taiyun.SuckTheWater.Gameplay
         public SyncVar<string> PlayerName = new SyncVar<string>("Player");
         
         public bool IsRegisteredWithGameSystems { get; private set; }
-        
+
+        #region Movement Lock
+
+        private bool _movementLocked;
+
+        /// <summary>
+        /// Locks/unlocks player input and weapons. Used by LevelManager during
+        /// fades, elevator phases, and intro screens.
+        /// Camera and character physics remain active so the player stays
+        /// grounded inside the elevator while locked.
+        /// </summary>
+        public void SetMovementLocked(bool locked)
+        {
+            if (!isOwner) return; // Only the local player should respond
+            _movementLocked = locked;
+
+            SetComponentEnabled(_inputHandler, !locked);
+            SetComponentEnabled(_interactionDetector, !locked);
+            SetComponentEnabled(_weaponsManager, !locked);
+
+            Debug.Log($"[NetworkedPlayerController] Movement lock = {locked} for player {PlayerClientId}");
+        }
+
+        public bool IsMovementLocked => _movementLocked;
+
         #endregion
-        
+
+        #endregion
+
         #region Events
-        
+
         public UnityAction OnLocalPlayerReady;
 
         /// <summary>

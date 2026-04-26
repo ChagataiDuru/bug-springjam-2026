@@ -10152,9 +10152,10 @@ GameObject:
   - component: {fileID: 3571415013615312433}
   - component: {fileID: 7638599732397716449}
   - component: {fileID: 2914028410928247648}
+  - component: {fileID: 299212759550756350}
   m_Layer: 0
   m_Name: NetworkedPlayerJam
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10791,6 +10792,31 @@ MonoBehaviour:
   FpsWeaponLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &299212759550756350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253983127304857660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c7163b04ad27e4a9d159a397e1585c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SuckTheWater::Taiyun.SuckTheWater.GameScene.PlayerRoleSync
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  Role:
+    _value: 0
+    _ownerAuth: 0
+    _sendIntervalInSeconds: 0
 --- !u!1 &7383874627095517793
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,8 @@ namespace Taiyun.SuckTheWater.GameScene
         [Header("Scene References")]
         [Tooltip("Reference to the NetworkedPlayerSpawner in this scene")]
         [SerializeField] private NetworkedPlayerSpawner _playerSpawner;
-        
+        [Tooltip("Reference to LevelManager — owns per-level loop after Playing state.")]
+        [SerializeField] private LevelManager _levelManager;
         [Header("Game Managers")]
         [Tooltip("Reference to ActorsManager")]
         [SerializeField] private ActorsManager _actorsManager;
@@ -30,9 +31,6 @@ namespace Taiyun.SuckTheWater.GameScene
         
         [Tooltip("Reference to AudioManager")]
         [SerializeField] private AudioManager _audioManager;
-
-        [Tooltip("Reference to GameSessionManager")]
-        [SerializeField] private GameSessionManager _sessionManager;
         
         [Header("Initialization Settings")]
         [Tooltip("Delay before starting initialization (allows scene to stabilize)")]
@@ -185,7 +183,7 @@ namespace Taiyun.SuckTheWater.GameScene
             if (_objectiveManager == null) _objectiveManager = FindFirstObjectByType<ObjectiveManager>();
             if (_audioManager == null) _audioManager = FindFirstObjectByType<AudioManager>();
             if (_playerSpawner == null) _playerSpawner = FindFirstObjectByType<NetworkedPlayerSpawner>();
-            if (_sessionManager == null) _sessionManager = FindFirstObjectByType<GameSessionManager>();
+            if (_levelManager == null) _levelManager = FindFirstObjectByType<LevelManager>();
         }
         
         private async UniTask ServerInitialization()
@@ -228,13 +226,16 @@ namespace Taiyun.SuckTheWater.GameScene
             // Step 4: Start
             CurrentGameState.value = GameState.Playing;
             HideLoadingScreen();
-
-            if (_sessionManager != null && isServer)
-            {
-                _sessionManager.StartSession();
-            }
             
             Debug.Log("[GameSceneManager] Game started!");
+            if (_levelManager != null)
+            {
+                _levelManager.ServerBeginLoop();
+            }
+            else
+            {
+                Debug.LogError("[GameSceneManager] LevelManager not assigned — game cannot proceed past initial spawn.");
+            }
         }
         
         private async UniTask SpawnAllPlayers()
