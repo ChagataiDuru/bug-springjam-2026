@@ -63,6 +63,7 @@ namespace Taiyun.SuckTheWater.GameScene
         // Server-only side tracking
         private int _upperLastJumpSide = -1; // last JumpZone the upper entered while Exploring
         private int _lowerCurrentCatchSide = -1; // catch zone the lower is currently inside
+        public SyncVar<bool> IsFirstIntro = new SyncVar<bool>(true);
 
         private void Awake() { Instance = this; }
 
@@ -154,9 +155,12 @@ namespace Taiyun.SuckTheWater.GameScene
             BroadcastSetMovementLocked(true);
 
             // Intro
+            bool isFirstIntro = IsFirstIntro.value;
             CurrentState.value = LevelState.Intro;
             await UniTask.Delay(System.TimeSpan.FromSeconds(
-                _transitionUI != null ? _transitionUI.TotalIntroDuration : 3f));
+                _transitionUI != null ? _transitionUI.GetIntroDuration(isFirstIntro) : 3f));
+
+            if (isFirstIntro) IsFirstIntro.value = false;
 
             // Exploring
             BroadcastSetMovementLocked(false);
@@ -432,7 +436,7 @@ namespace Taiyun.SuckTheWater.GameScene
             {
                 var local = FindLocalPlayerRoleSync();
                 var role = local != null ? local.Role.value : PlayerRole.Unassigned;
-                _transitionUI.PlayIntroAsync(role).Forget();
+                _transitionUI.PlayIntroAsync(role, IsFirstIntro.value).Forget();
             }
         }
     }

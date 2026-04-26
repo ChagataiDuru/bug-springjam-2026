@@ -17,6 +17,22 @@ namespace Taiyun.SuckTheWater.GameScene
         [SerializeField] private TMP_Text _primaryText;
         [SerializeField] private TMP_Text _secondaryText;
 
+        [Header("First-Intro Audio")]
+        [Tooltip("Played only on the very first level intro. The fade-in duration is driven by this clip's length.")]
+        [SerializeField] private AudioSource _audioSource;
+        [Tooltip("Unified elevator arrival sound (rumble + door + bell baked into one clip).")]
+        [SerializeField] private AudioClip _elevatorArrivalClip;
+
+        [Header("First-Intro Timing")]
+        [Tooltip("How long the screen stays pure black with audio playing before the fade begins. The clip's rumble portion should fit in this window.")]
+        [SerializeField] private float _firstIntroBlackHold = 3.0f;
+        [Tooltip("Duration of the black → clear fade. Tune so the fade resolves around the bell hit.")]
+        [SerializeField] private float _firstIntroFadeInDuration = 2.1f;
+        [Tooltip("Volume during the first intro (0..1).")]
+        [SerializeField, Range(0f, 1f)] private float _firstIntroVolume = 0.7f;
+        [Tooltip("If the clip is still playing after the fade completes, fade audio out over this duration.")]
+        [SerializeField] private float _firstIntroAudioTailOut = 0.5f;
+
         [Header("Timings (seconds)")]
         [Tooltip("Time the screen stays fully black before fading in.")]
         [SerializeField] private float _holdBlackBeforeFadeIn = 0.4f;
@@ -119,5 +135,74 @@ namespace Taiyun.SuckTheWater.GameScene
             }
             cg.alpha = to;
         }
+
+        public float GetIntroDuration(bool firstIntro)
+        {
+            if (!firstIntro) return TotalIntroDuration;
+            return _firstIntroBlackHold
+                 + _firstIntroFadeInDuration
+                 + _textHoldDuration;
+        }
+
+        public async UniTask PlayIntroAsync(PlayerRole localRole, bool firstIntro)
+        {
+            if (!firstIntro)
+            {
+                await PlayIntroAsync(localRole);
+                return;
+            }
+
+            SetRoleText(localRole);
+
+            if (_blackOverlay != null) _blackOverlay.alpha = 1f;
+            if (_textOverlay != null) _textOverlay.alpha = 0f;
+
+            PlayElevatorClip();
+
+            // Hold black while the rumble portion of the clip plays
+            await UniTask.Delay(System.TimeSpan.FromSeconds(_firstIntroBlackHold),
+                ignoreTimeScale: true);
+
+            // Fade in — door+bell portion of the clip should land during this window
+            var fadeTextIn = FadeCanvasGroup(_textOverlay, 0f, 1f, _textFadeDuration);
+            var fadeBlackOut = FadeCanvasGroup(_blackOverlay, 1f, 0f, _firstIntroFadeInDuration);
+            await UniTask.WhenAll(fadeTextIn, fadeBlackOut);
+
+            // Tail out audio if it's still playing past the visual fade
+            FadeOutClip(_firstIntroAudioTailOut).Forget();
+
+            await UniTask.Delay(System.TimeSpan.FromSeconds(_textHoldDuration),
+                ignoreTimeScale: true);
+
+            await FadeCanvasGroup(_textOverlay, 1f, 0f, _textFadeDuration);
+        }
+
+        private void PlayElevatorClip()
+        {
+            if (_audioSource == null || _elevatorArrivalClip == null) return;
+            _audioSource.clip = _elevatorArrivalClip;
+            _audioSource.loop = false;
+            _audioSource.volume = _firstIntroVolume;
+            _audioSource.Play();
+        }
+
+        private async UniTaskVoid FadeOutClip(float duration)
+        {
+            if (_audioSource == null || !_audioSource.isPlaying) return;
+            float startVol = _audioSource.volume;
+            float t = 0f;
+            while (t < duration && _audioSource.isPlaying)
+            {
+                t += Time.unscaledDeltaTime;
+                _audioSource.volume = Mathf.Lerp(startVol, 0f, Mathf.Clamp01(t / duration));
+                await UniTask.Yield();
+            }
+            if (_audioSource != null)
+            {
+                _audioSource.Stop();
+                _audioSource.volume = startVol;
+            }
+        }
+
     }
 }
