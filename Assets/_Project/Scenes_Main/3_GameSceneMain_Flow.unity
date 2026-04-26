@@ -2203,6 +2203,7 @@ GameObject:
   - component: {fileID: 241181470}
   - component: {fileID: 241181469}
   - component: {fileID: 241181471}
+  - component: {fileID: 241181472}
   m_Layer: 0
   m_Name: 'LevelTransitionCanvas '
   m_TagString: Untagged
@@ -2270,6 +2271,12 @@ MonoBehaviour:
   _textOverlay: {fileID: 2045949782}
   _primaryText: {fileID: 1567641674}
   _secondaryText: {fileID: 304027447}
+  _audioSource: {fileID: 241181472}
+  _elevatorArrivalClip: {fileID: 8300000, guid: f0485f937468636468ce5291bc6b90f2, type: 3}
+  _firstIntroBlackHold: 1.6
+  _firstIntroFadeInDuration: 2.4
+  _firstIntroVolume: 0.7
+  _firstIntroAudioTailOut: 0.8
   _holdBlackBeforeFadeIn: 0.4
   _fadeInDuration: 1.6
   _fadeOutDuration: 1
@@ -2280,6 +2287,103 @@ MonoBehaviour:
   _trustLine: ...
   _failHeadline: ...
   _failLine: The fall does not end.
+--- !u!82 &241181472
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241181468}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243464375917585960, guid: fcc71635aab95ff4fbdf1880bf2afa2f, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &244904551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3725,10 +3829,10 @@ MonoBehaviour:
   _upperSpawn: {fileID: 1738273686}
   _lowerSpawn: {fileID: 1399706987}
   _jumpZones:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2119270554}
+  - {fileID: 1843420585}
+  - {fileID: 1326419004}
+  - {fileID: 1463190952}
   _catchZones:
   - {fileID: 1592146234}
   - {fileID: 1264125857}
@@ -3750,6 +3854,10 @@ MonoBehaviour:
     _sendIntervalInSeconds: 0
   LevelIndex:
     _value: 0
+    _ownerAuth: 0
+    _sendIntervalInSeconds: 0
+  IsFirstIntro:
+    _value: 1
     _ownerAuth: 0
     _sendIntervalInSeconds: 0
 --- !u!1001 &352469191
