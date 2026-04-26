@@ -311,15 +311,21 @@ namespace Taiyun.SuckTheWater.GameScene
         {
             _pendingCatchOnSide = -1;
             var upper = PlayerRoleSync.GetByRole(PlayerRole.Upper);
+            var lower = PlayerRoleSync.GetByRole(PlayerRole.Lower);
             if (upper == null) return false;
 
-            // If upper jumped from no zone (-1), they auto-fail when Y threshold trips.
             while (true)
             {
                 if (_pendingCatchOnSide >= 0) return true;
 
-                if (Time.time - _jumpArmTime > _jumpArmGracePeriod &&
-                    upper.transform.position.y < _failureYThreshold)
+                bool graceElapsed = Time.time - _jumpArmTime > _jumpArmGracePeriod;
+
+                // Upper falls past threshold without catching → miss
+                if (graceElapsed && upper.transform.position.y < _failureYThreshold)
+                    return false;
+
+                // Lower falls past threshold (walked/jumped off edge) → also miss
+                if (lower != null && lower.transform.position.y < _failureYThreshold)
                     return false;
 
                 await UniTask.Yield();

@@ -18,6 +18,15 @@ namespace Taiyun.SuckTheWater.GameScene
         [Header("Detection")]
         [SerializeField] private string _playerTag = "Player";
 
+        [Header("Launch")]
+        [Tooltip("World-space target the player will fall toward. Should be a Transform inside the matching catch zone airspace.")]
+        [SerializeField] private Transform _launchTarget;
+
+        [Tooltip("Where the player snaps to before launching (centered on the jump edge).")]
+        [SerializeField] private Transform _launchOrigin;
+
+        public Transform LaunchTarget => _launchTarget;
+        public Transform LaunchOrigin => _launchOrigin;
         public int SideIndex => _sideIndex;
 
         /// <summary>Server-only. True while the Upper player is standing inside this zone.</summary>
