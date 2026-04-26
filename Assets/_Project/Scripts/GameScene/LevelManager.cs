@@ -350,7 +350,26 @@ namespace Taiyun.SuckTheWater.GameScene
 
         private async UniTask HandleSuccessAsync()
         {
+            // Snap upper into lower's socket and shake cameras
+            var upper = PlayerRoleSync.GetByRole(PlayerRole.Upper);
+            var lower = PlayerRoleSync.GetByRole(PlayerRole.Lower);
+            if (upper != null && lower != null)
+            {
+                var upperPose = upper.GetComponent<CatchPoseController>();
+                var lowerPose = lower.GetComponent<CatchPoseController>();
+                if (upperPose != null && lowerPose != null)
+                    upperPose.ServerApplyCatchPose(lowerPose);
+            }
+
             await UniTask.Delay(System.TimeSpan.FromSeconds(_postCatchHold));
+
+            // Release the held pose before elevators / next level
+            if (upper != null)
+            {
+                var upperPose = upper.GetComponent<CatchPoseController>();
+                if (upperPose != null) upperPose.ServerReleaseCatchPose();
+            }
+
             CurrentState.value = LevelState.Transitioning;
             await WaitForBothElevatorsOccupiedAsync();
             FadeOutOnAllClientsRpc();
@@ -360,6 +379,14 @@ namespace Taiyun.SuckTheWater.GameScene
 
         private async UniTask HandleMissAsync()
         {
+            // Release any lingering held pose (defensive)
+            var upper = PlayerRoleSync.GetByRole(PlayerRole.Upper);
+            if (upper != null)
+            {
+                var upperPose = upper.GetComponent<CatchPoseController>();
+                if (upperPose != null) upperPose.ServerReleaseCatchPose();
+            }
+
             FadeFailOnAllClientsRpc();
             await UniTask.Delay(System.TimeSpan.FromSeconds(_postMissHold));
         }
