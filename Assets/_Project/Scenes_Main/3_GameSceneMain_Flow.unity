@@ -572,9 +572,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4324892008981323969, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.61
+      objectReference: {fileID: 0}
     - target: {fileID: 4328224450451669867, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Bank_Door_01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331031266675265183, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.61
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2090,7 +2098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4324892008981323969, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.679038
+      value: -0.67903906
       objectReference: {fileID: 0}
     - target: {fileID: 4328224450451669867, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
       propertyPath: m_Name
@@ -2102,18 +2110,186 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4331031266675265183, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.67903626
+      value: -0.6790356
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4328095182958306993, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 235722768}
+    - targetCorrespondingSourceObject: {fileID: 4328131052603803223, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 235722767}
   m_SourcePrefab: {fileID: 100100000, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
 --- !u!4 &235722762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4324592801313596983, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
   m_PrefabInstance: {fileID: 235722761}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &235722763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4324892008981323969, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+  m_PrefabInstance: {fileID: 235722761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &235722764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4328131052603803223, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+  m_PrefabInstance: {fileID: 235722761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &235722765 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4331031266675265183, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+  m_PrefabInstance: {fileID: 235722761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &235722766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4328095182958306993, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+  m_PrefabInstance: {fileID: 235722761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &235722767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235722764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90e3f5d9b5634cc082011375644c821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stw.Gameplay::Taiyun.SuckTheWater.Gameplay.Doors.SealedDoor
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _doorId: Door_01
+  _roomAId: 
+  _roomBId: 
+  _interactionDuration: 2
+  _doorVisual: {fileID: 235722763}
+  _motion: 0
+  _openLocalEuler: {x: 0, y: 90, z: 0}
+  _openLocalPositionOffset: {x: 0, y: 0, z: 0}
+  _sealedLight: {fileID: 0}
+  _sealedRenderers: []
+  _sealedEmissionColor: {r: 0.2, g: 0.7, b: 1, a: 1}
+  _sealedLightIntensity: 2
+  _useSpeed: 0
+  _openDuration: 2
+  _openSpeed: 90
+  _openEase: 4
+  _useCustomCurve: 0
+  _openCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _audioSource: {fileID: 0}
+  _openSfx: {fileID: 0}
+  OnDoorOpened:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDoorReset:
+    m_PersistentCalls:
+      m_Calls: []
+  _startLocked: 0
+--- !u!114 &235722768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235722766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90e3f5d9b5634cc082011375644c821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: stw.Gameplay::Taiyun.SuckTheWater.Gameplay.Doors.SealedDoor
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _doorId: Door_01
+  _roomAId: 
+  _roomBId: 
+  _interactionDuration: 2
+  _doorVisual: {fileID: 235722765}
+  _motion: 1
+  _openLocalEuler: {x: 0, y: 90, z: 0}
+  _openLocalPositionOffset: {x: 0, y: 0, z: 0}
+  _sealedLight: {fileID: 0}
+  _sealedRenderers: []
+  _sealedEmissionColor: {r: 0.2, g: 0.7, b: 1, a: 1}
+  _sealedLightIntensity: 2
+  _useSpeed: 0
+  _openDuration: 2
+  _openSpeed: 90
+  _openEase: 4
+  _useCustomCurve: 0
+  _openCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _audioSource: {fileID: 0}
+  _openSfx: {fileID: 0}
+  OnDoorOpened:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDoorReset:
+    m_PersistentCalls:
+      m_Calls: []
+  _startLocked: 0
 --- !u!1001 &236152837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2273,15 +2449,15 @@ MonoBehaviour:
   _secondaryText: {fileID: 304027447}
   _audioSource: {fileID: 241181472}
   _elevatorArrivalClip: {fileID: 8300000, guid: f0485f937468636468ce5291bc6b90f2, type: 3}
-  _firstIntroBlackHold: 1.6
-  _firstIntroFadeInDuration: 2.4
+  _firstIntroBlackHold: 3.5
+  _firstIntroFadeInDuration: 2
   _firstIntroVolume: 0.7
-  _firstIntroAudioTailOut: 0.8
+  _firstIntroAudioTailOut: 0.4
   _holdBlackBeforeFadeIn: 0.4
   _fadeInDuration: 1.6
   _fadeOutDuration: 1
-  _textHoldDuration: 3.5
-  _textFadeDuration: 1.5
+  _textHoldDuration: 2.1
+  _textFadeDuration: 1
   _upperRoleHeadline: ARE YOU THE CATCHER OR JUMPER
   _lowerRoleHeadline: ARE YOU THE CATCHER OR JUMPER
   _trustLine: ...
@@ -3206,6 +3382,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304027445}
   m_CullTransparentMesh: 1
+--- !u!1 &305209182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 305209183}
+  - component: {fileID: 305209185}
+  - component: {fileID: 305209184}
+  m_Layer: 0
+  m_Name: ElevatorTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &305209183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305209182}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000058114523}
+  m_LocalPosition: {x: 0, y: 127, z: -2}
+  m_LocalScale: {x: 2, y: 6, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1562000645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &305209184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305209182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ad0a909718ae49a52ed2237dda631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SuckTheWater::Taiyun.SuckTheWater.GameScene.ElevatorOccupancyTrigger
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _playerTag: Player
+--- !u!65 &305209185
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305209182}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &305478947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3839,8 +4091,8 @@ MonoBehaviour:
   - {fileID: 591564645}
   - {fileID: 488388465}
   _lowerFloorElevators:
-  - {fileID: 917975446}
-  - {fileID: 1457984549}
+  - {fileID: 0}
+  - {fileID: 0}
   _transitionUI: {fileID: 241181471}
   _failureYThreshold: -10
   _jumpArmGracePeriod: 0.2
@@ -4376,6 +4628,82 @@ Transform:
   - {fileID: 1622091355}
   m_Father: {fileID: 539150148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &394067759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394067760}
+  - component: {fileID: 394067761}
+  - component: {fileID: 394067762}
+  m_Layer: 0
+  m_Name: ElevatorTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &394067760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394067759}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.669999, y: 1.0299911, z: -1.0400043}
+  m_LocalScale: {x: 2, y: 6, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1457984547}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &394067761
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394067759}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &394067762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394067759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ad0a909718ae49a52ed2237dda631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: SuckTheWater::Taiyun.SuckTheWater.GameScene.ElevatorOccupancyTrigger
+  _networkRules: {fileID: 0}
+  _visitiblityRules: {fileID: 0}
+  _isSetup: 0
+  _prefabId: -2147483648
+  _componentIndex: -2147483648
+  _shouldBePooled: 0
+  _parent: {fileID: 0}
+  _invertedPathToNearestParent: 
+  _directChildren: []
+  _playerTag: Player
 --- !u!1001 &394736565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12304,43 +12632,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4328224450451669867, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 917975446}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
 --- !u!4 &917975444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4324592801313596983, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
   m_PrefabInstance: {fileID: 917975443}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &917975445 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4328224450451669867, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
-  m_PrefabInstance: {fileID: 917975443}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &917975446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 917975445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c86ad0a909718ae49a52ed2237dda631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: SuckTheWater::Taiyun.SuckTheWater.GameScene.ElevatorOccupancyTrigger
-  _networkRules: {fileID: 0}
-  _visitiblityRules: {fileID: 0}
-  _isSetup: 0
-  _prefabId: -2147483648
-  _componentIndex: -2147483648
-  _shouldBePooled: 0
-  _parent: {fileID: 0}
-  _invertedPathToNearestParent: 
-  _directChildren: []
-  _playerTag: Player
 --- !u!1001 &919387176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18663,44 +18961,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4328224450451669867, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4324592801313596983, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1457984549}
+      addedObject: {fileID: 394067760}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
 --- !u!4 &1457984547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4324592801313596983, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
   m_PrefabInstance: {fileID: 1457984546}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1457984548 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4328224450451669867, guid: 15814f4574cc54b0eb31b59ac859cb9a, type: 3}
-  m_PrefabInstance: {fileID: 1457984546}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1457984549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457984548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c86ad0a909718ae49a52ed2237dda631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: SuckTheWater::Taiyun.SuckTheWater.GameScene.ElevatorOccupancyTrigger
-  _networkRules: {fileID: 0}
-  _visitiblityRules: {fileID: 0}
-  _isSetup: 0
-  _prefabId: -2147483648
-  _componentIndex: -2147483648
-  _shouldBePooled: 0
-  _parent: {fileID: 0}
-  _invertedPathToNearestParent: 
-  _directChildren: []
-  _playerTag: Player
 --- !u!1001 &1458272253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20590,6 +20861,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 917975444}
+  - {fileID: 305209183}
   - {fileID: 1457984547}
   - {fileID: 1083208058}
   - {fileID: 801721414}
