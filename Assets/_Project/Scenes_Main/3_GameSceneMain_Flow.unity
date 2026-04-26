@@ -2273,11 +2273,11 @@ MonoBehaviour:
   _holdBlackBeforeFadeIn: 0.4
   _fadeInDuration: 1.6
   _fadeOutDuration: 1
-  _textHoldDuration: 2.5
-  _textFadeDuration: 0.5
-  _upperRoleHeadline: YOU ARE ON THE UPPER FLOOR
-  _lowerRoleHeadline: YOU ARE ON THE LOWER FLOOR
-  _trustLine: Trust your buddy.
+  _textHoldDuration: 3.5
+  _textFadeDuration: 1.5
+  _upperRoleHeadline: ARE YOU THE CATCHER OR JUMPER
+  _lowerRoleHeadline: ARE YOU THE CATCHER OR JUMPER
+  _trustLine: ...
   _failHeadline: ...
   _failLine: The fall does not end.
 --- !u!1 &244904551
@@ -3056,8 +3056,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -20584,8 +20584,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1

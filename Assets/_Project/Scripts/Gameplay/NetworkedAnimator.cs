@@ -606,6 +606,59 @@ namespace Taiyun.SuckTheWater.Gameplay
 
         #endregion
 
+        #region Reset
+
+        /// <summary>
+        /// Server-only. Broadcasts a full animation-state reset to all clients.
+        /// Call this from LevelManager when starting a new level, after death/miss,
+        /// or any time the player is teleported and previous animation state is stale.
+        /// </summary>
+        public void ServerResetAnimationState()
+        {
+            if (!isServer) return;
+            ResetAnimationStateObserversRpc();
+        }
+
+        [ObserversRpc(bufferLast: false)]
+        private void ResetAnimationStateObserversRpc()
+        {
+            LocalResetAnimationState();
+        }
+
+        private void LocalResetAnimationState()
+        {
+            if (!_ready) return;
+
+            ForEachCurrentPresentationAnimator(animator =>
+            {
+                if (!IsAnimatorUsable(animator)) return;
+
+                // Clear the bools — IsDead is the critical one that gates Update
+                animator.SetBool(_hashIsDead, false);
+                animator.SetBool(_hashIsFiring, false);
+                animator.SetBool(_hashIsGrounded, true);
+                animator.SetBool(_hashIsCrouching, false);
+
+                // Reset locomotion floats so the model isn't mid-stride after teleport
+                animator.SetFloat(_hashMoveX, 0f);
+                animator.SetFloat(_hashMoveZ, 0f);
+                animator.SetFloat(_hashSpeed, 0f);
+
+                // Clear any triggers that might still be queued
+                animator.ResetTrigger(_hashJumpTrigger);
+                animator.ResetTrigger(_hashHitTrigger);
+
+                // Force back to the default state in layer 0 so we exit any "Die" or
+                // "Hit" sub-states immediately rather than waiting for transitions
+                animator.Play("Idle", 0, 0f);
+                animator.Update(0f);
+            });
+
+            Debug.Log($"[NetworkedAnimator] Animation state reset for player {owner?.id}");
+        }
+
+        #endregion
+
         #region Debug API
 
         public void GetDebugSnapshot(out float moveX, out float moveZ, out float speed, out bool isGrounded, out bool isCrouching)

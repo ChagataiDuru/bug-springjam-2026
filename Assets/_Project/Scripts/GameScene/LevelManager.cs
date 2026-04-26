@@ -148,6 +148,8 @@ namespace Taiyun.SuckTheWater.GameScene
 
             // Randomize roles every level
             AssignRandomRoles();
+            ResetAllPlayerAnimators();
+
             TeleportPlayersToSpawns();
             BroadcastSetMovementLocked(true);
 
@@ -175,6 +177,16 @@ namespace Taiyun.SuckTheWater.GameScene
 
             if (caught) await HandleSuccessAsync();
             else await HandleMissAsync();
+        }
+
+        private void ResetAllPlayerAnimators()
+        {
+            foreach (var roleSync in PlayerRoleSync.All)
+            {
+                if (roleSync == null) continue;
+                var animator = roleSync.GetComponent<Taiyun.SuckTheWater.Gameplay.NetworkedAnimator>();
+                if (animator != null) animator.ServerResetAnimationState();
+            }
         }
 
         #region Role assignment / teleport / lock (unchanged)
